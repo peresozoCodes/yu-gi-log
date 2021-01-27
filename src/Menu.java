@@ -4,15 +4,14 @@ public class Menu
     {
         "\n1. Ver Mano",
         "\n2. Ver Campo",
-        "\n3. Invocar Carta (modo ATK)",
-        "\n4. Colocar Carta (modo DEF)",
-        "\n5. Declarar Ataque",
-        "\n6. Cambiar Posicion",
-        "\n7. Ver Cementerio",
-        "\n8. Terminar Turno"
+        "\n3. Invocar Carta",
+        "\n4. Declarar Ataque",
+        "\n5. Cambiar Posicion",
+        "\n6. Ver Cementerio",
+        "\n7. Terminar Turno"
     };
 
-    private static Intervalo OPTIONS = new Intervalo(1,8);
+    private static Intervalo OPTIONS = new Intervalo(1,7);
 
     public void show()
     {
@@ -28,11 +27,11 @@ public class Menu
         int option;
         boolean error;
         do {
-            gestorIO.out("\nOpción? [1-8]: ");
+            gestorIO.out("\nOpción? [1-7]: ");
             option = gestorIO.inInt();
             error = !OPTIONS.incluye(option);
             if (error){
-                gestorIO.out("\nError!!! La opción debe ser entre 1 y 8");
+                gestorIO.out("\nError!!! La opción debe ser entre 1 y 7");
             }
         } while (error);
         return option;

@@ -1,76 +1,48 @@
-import java.util.ArrayList;
+public abstract class Card {
+    private final String name;
+    private boolean isHidden;
+    private Location location;
+    private static Board board;
 
-public class Card
-{
-    private String name;
-    private int attack;
-    private int defense;
-    private boolean isVisible = true;
-
-    public String getName()
-    {
-        if (isVisible)
-            return name;
-        else
-            return "Carta boca abajo";
-    }
-
-    public boolean isVisible() {
-        return isVisible;
-    }
-
-    public void setVisible(boolean visible) {
-        isVisible = visible;
-    }
-
-    public int getAttack()
-    {
-        if (isVisible)
-            return attack;
-        else
-            return -1;
-    }
-
-    public int getDefense()
-    {
-        if (isVisible)
-            return defense;
-        else
-            return -1;
-    }
-
-    public Card()
-    {
-    }
-
-    public Card(String name, int attack, int defense)
-    {
+    public Card(String name) {
         this.name = name;
-        this.attack = attack;
-        this.defense = defense;
+        this.isHidden = true;
     }
 
-    public ArrayList<Card> getCards() {
-        ArrayList cardList = new ArrayList<Card>()
-        {
-            {
-                add(new Card("Kojikocy", 1500, 1200));
-                add(new Card("Harpie Lady", 1300, 1400));
-                add(new Card("Dark Magician", 2500, 2100));
-                add(new Card("Dragon Blanco Oji-Azulinos", 3000, 2500));
-                add(new Card("Feral Imp", 1300, 1400));
-                add(new Card("Jinzo", 2400, 1500));
-                add(new Card("Dragon Negro Oji-Carmesianos", 2400, 2000));
-                add(new Card("Big Shield Gardna", 100, 2600));
-                add(new Card("MINOTARUS!!", 17000, 1000));
-                add(new Card("Gran Polilla", 2600, 2500));
-                add(new Card("Planta Come-Hombres", 800, 600));
-                add(new Card("Bicho del Pantano", 1800, 1600));
-                add(new Card("Guerrero Castor", 1200, 1500));
-            }
-        };
+    public Card(String name, boolean hidden, Location loc) {
+        this.name = name;
+        this.isHidden = hidden;
+        this.location = loc;
+    }
 
-        return cardList;
+    public abstract void action(MonsterCard var1);
+
+    public boolean isHidden() {
+        return this.isHidden;
+    }
+
+    public void setHidden(boolean isHidden) {
+        this.isHidden = isHidden;
+    }
+
+    public Location getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public static Board getBoard() {
+        return board;
+    }
+
+    public static void setBoard(Board board) {
+        board = board;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 }

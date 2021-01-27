@@ -159,7 +159,7 @@ public void out (byte salida)
 	System.out.print(salida);
 }	
 
-public void out (Card salida)
+public void out (MonsterCard salida)
 {
 	System.out.print(salida);
 }	
