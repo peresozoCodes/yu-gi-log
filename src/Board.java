@@ -5,10 +5,12 @@ public class Board
     private Player activePlayer;
     private Player opponentPlayer;
     private Player winner;
+    private int playerNumber;
 
     public Board() {
 
         MonsterCard.setBoard(this);
+        playerNumber = 1;
 
     }
 
@@ -44,12 +46,12 @@ public class Board
         opponentPlayer = temp;
         activePlayer.addCardToHand();
 
+        changePlayerNumber();
+
     }
 
     public boolean isGameOver() {
-        if (winner != null)
-            return true;
-        return false;
+        return winner != null;
     }
 
     public Player getActivePlayer() {
@@ -76,6 +78,19 @@ public class Board
         if (isGameOver())
             return;
         this.winner = winner;
+    }
+
+    private void changePlayerNumber()
+    {
+        if (playerNumber == 1)
+            playerNumber = 2;
+        else
+            playerNumber = 1;
+    }
+
+    public int getPlayerNumber()
+    {
+        return playerNumber;
     }
 
 }

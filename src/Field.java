@@ -6,17 +6,16 @@ public class Field
 {
     private final int MONSTER_LIMIT = 5;
     private MonsterCard card;
-    private ArrayList<MonsterCard> monsterArea;
+    private ArrayList<Card> hand;
+    private ArrayList<MonsterCard> monsterAreas;
     private ArrayList<Card> deck;
     private ArrayList<Card> graveyard;
-    private ArrayList<Card> hand;
-
     private Phase phase;
 
     public Field()
     {
         card = new MonsterCard();
-        monsterArea = new ArrayList<>();
+        monsterAreas = new ArrayList<MonsterCard>();
         graveyard = new ArrayList<>();
         hand = new ArrayList<>();
         phase = Phase.MAIN1;
@@ -25,21 +24,19 @@ public class Field
     public void initializeDeck()
     {
         ArrayList<MonsterCard> cards = card.getCards();
-        deck = shuffle(cards);
-        // conectarse a la base de datos y llenar la lista de cartas [MAZO]
+        deck = this.shuffle(cards);
     }
 
-    public void show()
+    public void show(Field field)
     {
         GestorIO gestorIO = new GestorIO();
-        //gestorIO.out("\n------- CAMPO -------\n");
-        if (monsterArea.size() < 1)
+        if (field.monsterAreas.size() < 1)
         {
             gestorIO.out("\tCAMPO VACÍO\n");
             return;
         }
 
-        for (MonsterCard monster : monsterArea)
+        for (MonsterCard monster : field.monsterAreas)
         {
             gestorIO.out("\t"+ monster.getName()
                     +"\t ATK: "+ monster.getAttackPoints()
@@ -115,7 +112,7 @@ public class Field
             monster.setHidden(isHidden);
             monster.setMode(m);
             monster.setLocation(Location.FIELD);
-            monsterArea.add(monster);
+            monsterAreas.add(monster);
         }
     }
 
@@ -165,7 +162,7 @@ public class Field
 
     private boolean monsterAreaIndexOutOfRange()
     {
-        if (monsterArea.size() >= 5) {
+        if (monsterAreas.size() >= 5) {
             new GestorIO().out("No hay zonas de monstrous libres para invocar");
             return true;
         }
@@ -178,10 +175,6 @@ public class Field
 
     public void setPhase(Phase phase) {
         this.phase = phase;
-    }
-
-    public ArrayList<Card> getHand() {
-        return hand;
     }
 
     public static void main (String[] args)

@@ -20,7 +20,7 @@ public class Player
         return number;
     }
 
-    public void makePlay(int option)
+    public void makePlay(int option, Player opponent)
     {
         GestorIO gestorIO = new GestorIO();
         switch (option) {
@@ -28,7 +28,7 @@ public class Player
                 this.showHand();
                 break;
             case 2:
-                this.showField();
+                this.showField(opponent);
                 break;
             case 3:
                 if (!addedMonsterThisTurn)
@@ -57,9 +57,20 @@ public class Player
         field.showHand();
     }
 
-    private void showField()
+    private void showField(Player opponentPlayer)
     {
-        field.show();
+        GestorIO gestorIO = new GestorIO();
+        gestorIO.out("\n------- CAMPO OPONENTE -------\n");
+        this.showField(opponentPlayer.field);
+
+        gestorIO.out("\n--------  TU CAMPO  --------\n");
+        this.showField(this.field);
+    }
+
+    private void showField(Field field)
+    {
+        field.show(field);
+
     }
 
     private void setCardInField()
@@ -105,11 +116,6 @@ public class Player
         changePhase();
     }
 
-    public boolean lose()
-    {
-        return lifePoints <= 0;
-    }
-
     public static void main(String[] args)
     {
         GestorIO gestorIO = new GestorIO();
@@ -118,7 +124,6 @@ public class Player
         gestorIO.out(player1.number);
         gestorIO.out(player1.addedMonsterThisTurn);
         player1.showHand();
-        player1.showField();
         player1.addNCardsToHand(5);
 
     }

@@ -19,12 +19,13 @@ public class YuGilOhg
         do
         {
             option = 0;
-            new GestorIO().out("\nTurno de Jugador: " + players[board.getActivePlayer().getNumber()]);
+            new GestorIO().out("\nTurno de Jugador: " + board.getPlayerNumber());
             menu.show();
-            while (option != 8)
+            while (option != 7)
             {
                 option = menu.getOption();
-                players[board.getActivePlayer().getNumber()].makePlay(option);
+                players[board.getActivePlayer().getNumber()]
+                        .makePlay(option, board.getOpponentPlayer());
             }
             board.nextPlayer();
         } while (!board.isGameOver());

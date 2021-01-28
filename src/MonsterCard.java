@@ -23,26 +23,10 @@ public class MonsterCard extends Card
         defensePoints = defense;
     }
 
-    public String getName()
-    {
-        if (isVisible)
-            return super.getName();
-        else
-            return "Carta boca abajo";
-    }
-
     @Override
     public void action(MonsterCard var1)
     {
 
-    }
-
-    public boolean isVisible() {
-        return isVisible;
-    }
-
-    public void setVisible(boolean visible) {
-        isVisible = visible;
     }
 
     public ArrayList<MonsterCard> getCards() {
@@ -68,6 +52,14 @@ public class MonsterCard extends Card
         return cardList;
     }
 
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
     public boolean isSwitchedMode() {
         return switchedMode;
     }
@@ -82,6 +74,14 @@ public class MonsterCard extends Card
 
     public void setAttacked(boolean attacked) {
         this.attacked = attacked;
+    }
+
+    public String getName()
+    {
+        if (isVisible)
+            return super.getName();
+        else
+            return "Carta boca abajo";
     }
 
     public int getLevel() {
